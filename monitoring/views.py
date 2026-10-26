@@ -1,10 +1,11 @@
 from django.http import JsonResponse
-from .models import Measurement
 from .services import get_measurement_stats
+
 
 def health_check(request):
     """Простой эндпоинт для проверки работоспособности."""
     return JsonResponse({"status": "ok"})
+
 
 def location_stats(request, location_id, parameter):
     """Эндпоинт со статистикой."""

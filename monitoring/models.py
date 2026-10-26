@@ -1,6 +1,6 @@
-from django.db import models
-from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
+from django.db import models
 
 
 class Location(models.Model):
@@ -13,15 +13,15 @@ class Location(models.Model):
 
 
 class Measurement(models.Model):
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='measurements')
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="measurements")
     parameter = models.CharField(max_length=50)
     value = models.FloatField(validators=[MinValueValidator(0.0)])
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-timestamp']
+        ordering = ["-timestamp"]
 
     def clean(self):
         super().clean()
-        if self.parameter == 'PM2.5' and self.value > 1000:
-            raise ValidationError({'value': 'PM2.5 value is too high'})
+        if self.parameter == "PM2.5" and self.value > 1000:
+            raise ValidationError({"value": "PM2.5 value is too high"})

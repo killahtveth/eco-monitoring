@@ -1,6 +1,8 @@
-from django.test import TestCase
 from django.core.exceptions import ValidationError
+from django.test import TestCase
+
 from monitoring.models import Location, Measurement
+
 
 class ModelTests(TestCase):
     def setUp(self):

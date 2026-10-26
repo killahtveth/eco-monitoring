@@ -1,6 +1,8 @@
 from django.test import TestCase
+
 from monitoring.models import Location, Measurement
 from monitoring.services import get_measurement_stats
+
 
 class ServiceTests(TestCase):
     def setUp(self):
@@ -10,5 +12,5 @@ class ServiceTests(TestCase):
 
     def test_stats_calculation(self):
         stats = get_measurement_stats(self.location.id, "PM2.5")
-        self.assertEqual(stats['avg'], 15.0)
-        self.assertEqual(stats['count'], 2)
+        self.assertEqual(stats["avg"], 15.0)
+        self.assertEqual(stats["count"], 2)
