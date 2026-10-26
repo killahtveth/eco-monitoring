@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Текущие показатели</h2>
+<div class="row mt-4">
+    {% for param, m in measurements.items %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ param }}</h5>
+                <h1 class="display-4 {% if m.value > 40 %}text-danger{% else %}text-success{% endif %}">
+                    {{ m.value }}
+                </h1>
+                <p class="text-muted small">Обновлено: {{ m.timestamp|date:"H:i" }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
