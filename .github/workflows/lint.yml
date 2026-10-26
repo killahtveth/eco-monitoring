@@ -1,0 +1,25 @@
+name: Lint & Code Quality
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install linters
+        run: pip install black isort flake8 pylint radon
+      - name: Black
+        run: black --check .
+      - name: Isort
+        run: isort --check-only .
+      - name: Flake8
+        run: flake8 .
+      - name: Pylint
+        run: pylint monitoring/ --fail-under=7.0 || true
+      - name: Radon (complexity)
+        run: radon cc monitoring/ -a -s
+      - name: Commits (last 7 days)
+        run: |
+          echo "Commits: $(git rev-list --count --since='7 days ago' HEAD)"
