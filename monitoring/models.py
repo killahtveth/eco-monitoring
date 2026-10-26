@@ -25,3 +25,12 @@ class Measurement(models.Model):
         super().clean()
         if self.parameter == "PM2.5" and self.value > 1000:
             raise ValidationError({"value": "PM2.5 value is too high"})
+
+
+class Source(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.URLField(blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
