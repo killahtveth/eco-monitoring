@@ -1,3 +1,14 @@
 [flake8]
 max-line-length = 100
-exclude = .git,__pycache__,*/migrations/*,venv/
+exclude = 
+    .git,
+    __pycache__,
+    */migrations/*,
+    venv/,
+    manage.py,
+    eco_monitor/settings.py,
+    eco_monitor/asgi.py,
+    eco_monitor/wsgi.py,
+    eco_monitor/urls.py
+per-file-ignores =
+    eco_monitor/settings.py: E501
