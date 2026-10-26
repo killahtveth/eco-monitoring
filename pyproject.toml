@@ -13,7 +13,12 @@ include = ["monitoring*", "eco_monitor*"]
 [tool.black]
 line-length = 100
 target-version = ['py311']
-exclude = 'migrations'
+extend-exclude = '''
+/(
+    migrations
+    | manage\.py
+)/
+'''
 
 [tool.isort]
 profile = "black"

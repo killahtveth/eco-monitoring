@@ -9,7 +9,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install linters
-        run: pip install black isort flake8 pylint radon
+        run: pip install -r requirements.txt
       - name: Black
         run: black --check .
       - name: Isort
